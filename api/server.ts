@@ -22,7 +22,12 @@ app.use('/api/getdata', (req: Request, res: Response, next: Function) => {
     let employees = JSON.parse(rawData);
 
     let count = 0;
-    employees.forEach((item: typeof data) => {  item.id = count++});
+    employees.forEach((item: typeof data) => { 
+        if(!item.firstName)
+            employees.splice(employees.indexOf(item),1);
+        else
+            item.id = count++;
+    });
 
     fs.writeFileSync(__dirname + '/data.json', JSON.stringify(employees));
     next();

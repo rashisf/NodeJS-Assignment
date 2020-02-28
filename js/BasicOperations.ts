@@ -141,40 +141,41 @@ export class Operations implements CRUD<string>
 
     validateFields(employee: string[], x: string) {
 
+        let answer = true;
         if (!employee[0].match(/^[a-zA-Z]+$/)) {
 
             document.getElementById('e' + x + '0')!.innerHTML = 'Only alphabets are allowed';
-            return false;
+            answer= answer && false;
         }
 
-        if (!employee[1].match(/^[a-zA-Z]+$/)) {
+        if (employee[1] != "" && !employee[1].match(/^[a-zA-Z]+$/)) {
 
             document.getElementById('e' + x + '1')!.innerHTML = 'Only alphabets are allowed';
-            return false;
+            answer= answer && false;
         }
 
         if (!employee[2].match(/^[a-zA-Z]+$/)) {
             document.getElementById('e' + x + '2')!.innerHTML = 'Only alphabets are allowed';
-            return false;
+            answer= answer && false;
         }
 
         if (!employee[3].match(/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/)) {
 
             document.getElementById('e' + x + '3')!.innerHTML = 'Enter valid email';
-            return false;
+            answer= answer && false;
         }
 
         if (!employee[4].match(/[+]?[0-9]{10,13}$/)) {
             document.getElementById('e' + x + '4')!.innerHTML = 'Only digits are allowed';
-            return false;
+            answer= answer && false;
         }
 
         if (employee[6] === "") {
             document.getElementById('e' + x + '6')!.innerHTML = 'Invalid Address';
-            return false;
+            answer= answer && false;
         }
 
-        return true;
+        return answer;
     }
 
 
